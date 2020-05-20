@@ -15,7 +15,7 @@ describe('enhancer', () => {
     })
 
     describe('succeed', () => {
-        it('Enhancement should increase by 1', () => {
+        it('Enhancement should increase by 1, Durability should not be changed', () => {
             let item = {
                 name: "Sarcasm",
                 durability: 50,
@@ -24,7 +24,7 @@ describe('enhancer', () => {
             expect(enhancer.succeed(item)).toBe(16)
         })
 
-        it('Enhancement should be unchanged if level is already at 20', () => {
+        it('Enhancement should be unchanged if level is already at 20, Durability should not be changed', () => {
             let item = {
                 name: "Sarcasm",
                 durability: 50,
@@ -32,15 +32,35 @@ describe('enhancer', () => {
             }
             expect(enhancer.succeed(item)).toBe(20)
         })
-        
-        it.todo('Durability should not be changed', () => {
-
-        })
     })
 
-    // describe('fail', () => {
-    //     it.todo('Durability should decrease by 5 if Enhancement is less than 15', () => {})
-    //     it.todo('Durability should decrease by 10 if Enhancement is greater than 15', () => {})
-    //     it.todo('Enhancement should decrease by 1 if Enhancement is greater than 16', () => {})
-    // })
+    describe('fail', () => {
+        it('Durability should decrease by 5 if Enhancement is less than 15', () => {
+            let item = {
+                name: "Sarcasm",
+                durability: 50,
+                enhancement: 10
+            } 
+            expect(enhancer.fail(item)).toBe(45)
+        })
+
+        it('Durability should decrease by 10 if Enhancement is greater than 15', () => {
+            let item = {
+                name: "Sarcasm",
+                durability: 50,
+                enhancement: 20
+            }
+            expect(enhancer.fail(item)).toBe(40)
+        })
+
+        it('Enhancement should decrease by 1 if Enhancement is greater than 16', () => {
+            let item = {
+                name: "Sarcasm",
+                durability: 50,
+                enhancement: 18
+            }
+            expect(enhancer.fail(item)).toBe(17)
+            console.log(item)
+        })
+    })
 })
