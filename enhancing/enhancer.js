@@ -16,14 +16,14 @@ function succeed(item) {
 function fail(item) {
   if(item.enhancement < 15){
     return item.durability - 5
-  }else if(item.enhancement > 15){
-    return item.durability - 10
   }
-  
-  if (item.enhancement > 16){
-    return item.enhancement - 1
-  } else{
-    return item.enhancement = item.enhancement
+  else if(item.enhancement >= 16){
+    item.durability = item.durability - 10
+    item.enhancement = item.enhancement - 1
+    return {...item}
+  }else if(item.enhancement >= 15){
+    item.durability = item.durability - 10
+    return {...item}
   }
 }
 
@@ -34,5 +34,9 @@ function repair(item) {
 
 //stretch
 function get(item) {
-  return {...item}
+  if(item.enhancement === 0){
+    return item.name = item.name
+  } else{
+    return `[+ ${item.enhancement}] ${item.name}`
+  }
 }

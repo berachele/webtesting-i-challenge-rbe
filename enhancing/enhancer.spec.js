@@ -1,7 +1,6 @@
 const enhancer = require('./enhancer.js');
 // test away!
 
-
 describe('enhancer', () => {
     describe('repair', () => {
         it('should return a new item with durability restored to 100', () => {
@@ -45,22 +44,52 @@ describe('enhancer', () => {
         })
 
         it('Durability should decrease by 10 if Enhancement is greater than 15', () => {
+            const control = {
+                name:"Sarcasm",
+                durability: 50,
+                enhancement: 15
+            }
+            let item = {
+                name: "Sarcasm",
+                durability: 40,
+                enhancement: 15
+            }
+            console.log(item)
+            expect(enhancer.fail(control)).toStrictEqual(item)
+        })
+
+        it('Enhancement should decrease by 1 if Enhancement is greater than 16', () => {
+            const control = {
+                name:"Sarcasm",
+                durability: 50,
+                enhancement: 18
+            }
+            let item = {
+                name: "Sarcasm",
+                durability: 40,
+                enhancement: 17
+            }
+            expect(enhancer.fail(control)).toStrictEqual(item)
+        })
+    })
+
+    describe('get', () => {
+        it('should return name not modified if enhancement = 0', () => {
             let item = {
                 name: "Sarcasm",
                 durability: 50,
                 enhancement: 20
             }
-            expect(enhancer.fail(item)).toBe(40)
+            expect(enhancer.get(item)).toBe(`[+ 20] Sarcasm`)
         })
 
-        it('Enhancement should decrease by 1 if Enhancement is greater than 16', () => {
+        it('should return name not modified if enhancement = 0', () => {
             let item = {
                 name: "Sarcasm",
                 durability: 50,
-                enhancement: 18
+                enhancement: 0
             }
-            expect(enhancer.fail(item)).toBe(17)
-            console.log(item)
+            expect(enhancer.get(item)).toBe('Sarcasm')
         })
     })
 })
