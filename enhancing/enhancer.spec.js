@@ -24,8 +24,13 @@ describe('enhancer', () => {
             expect(enhancer.succeed(item)).toBe(16)
         })
 
-        it.todo('Enhancement should be unchanged if level is already at 20', () => {
-
+        it('Enhancement should be unchanged if level is already at 20', () => {
+            let item = {
+                name: "Sarcasm",
+                durability: 50,
+                enhancement: 20
+            }
+            expect(enhancer.succeed(item)).toBe(20)
         })
         
         it.todo('Durability should not be changed', () => {

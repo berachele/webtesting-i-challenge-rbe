@@ -7,7 +7,7 @@ module.exports = {
 
 function succeed(item) {
   if(item.enhancement >= 20){
-    return item.enhancement + 0;
+    return item.enhancement = 20;
   }else{
     return item.enhancement + 1;
   }
