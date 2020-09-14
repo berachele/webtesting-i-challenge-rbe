@@ -31,7 +31,6 @@ function repair(item) {
   return item.durability = 100;
 }
 
-
 //stretch
 function get(item) {
   if(item.enhancement === 0){
